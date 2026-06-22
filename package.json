@@ -1,5 +1,5 @@
 {
-  "homepage": "https://Manasa-tm.github.io/Manas_healthcare"
+  "homepage": "https://manasa-tm.github.io/Manas_healthcare/",
   "name": "Manas_healthcare",
   "private": true,
   "version": "0.0.0",
@@ -8,9 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
-    "predeploy": "npm run build"
-    "deploy": "gh-pages -d build"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "lucide-react": "^1.21.0",
