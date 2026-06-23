@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { initDB, authDB } from './data/db';
 
 // Public Layout & Pages
@@ -41,6 +41,7 @@ export default function App() {
         {/* PUBLIC */}
         <Route path="/" element={<PublicLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="/Manas_healthcare/" element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="our-team" element={<OurTeamPage />} />
           <Route path="find-help" element={<FindHelpPage />} />
@@ -54,6 +55,7 @@ export default function App() {
 
         {/* ADMIN */}
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/Manas_healthcare/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
           <Route index element={<Navigate to="/admin/dashboard" replace />} />
           <Route path="dashboard" element={<AdminDashboard />} />
