@@ -143,7 +143,7 @@ export default function PublicLayout() {
           {/* CTA */}
           <div style={{ display:'flex', alignItems:'center', gap:12 }}>
             <Link to="/contact" className="btn btn-outline btn-sm" style={{ display:'flex' }}>Contact Us</Link>
-            <Link to="/book-consultation" className="btn btn-primary btn-sm" style={{ display:'flex' }}>Book Consultation</Link>
+            <Link to="/admin/login" className="btn btn-primary btn-sm" style={{ display:'flex' }}>Admin Dashboard</Link>
             <button onClick={() => setMenuOpen(!menuOpen)} style={{ display:'none', background:'none', color:'#1A2B22' }} className="mobile-menu-btn">
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
