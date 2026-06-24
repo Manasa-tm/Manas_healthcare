@@ -183,7 +183,15 @@ export default function PublicLayout() {
             <div>
               <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:16 }}>
                 <div style={{ width:36, height:36, background:'rgba(255,255,255,0.15)', borderRadius:8, display:'flex', alignItems:'center', justifyContent:'center' }}>
-                  <span style={{ fontFamily:'Playfair Display', fontSize:16, fontWeight:700 }}>M</span>
+                  <img
+                      src={logo}
+                      alt="Manas Healthcare Logo"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain'
+                      }}
+                    />
                 </div>
                 <div>
                   <div style={{ fontFamily:'Playfair Display', fontSize:16, fontWeight:700 }}>Manas Healthcare</div>
