@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone, ChevronDown, Heart } from 'lucide-react';
 import logo from "../../assets/manashealthlogo.png";
+import logoDark from "../../assets/manashealthlogo-dark.png";
 
 const NAV_ITEMS = [
   { label: 'Home', path: '/' },
@@ -184,7 +185,7 @@ export default function PublicLayout() {
               <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:16 }}>
                 <div style={{ width:36, height:36, background:'rgba(255,255,255,0.15)', borderRadius:8, display:'flex', alignItems:'center', justifyContent:'center' }}>
                   <img
-                      src={logo}
+                      src={logoDark}
                       alt="Manas Healthcare Logo"
                       style={{
                         width: '100%',
