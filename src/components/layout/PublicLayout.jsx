@@ -201,7 +201,7 @@ export default function PublicLayout() {
               </div>
               <p style={{ fontSize:14, opacity:0.75, lineHeight:1.7, maxWidth:260 }}>Evidence-based mental healthcare for individuals, families, and organizations.</p>
               <div style={{ marginTop:20, display:'flex', gap:12 }}>
-                {['f','in','tw'].map(s => <a key={s} href="#" style={{ width:32, height:32, background:'rgba(255,255,255,0.1)', borderRadius:6, display:'flex', alignItems:'center', justifyContent:'center', color:'white', fontSize:12, fontWeight:600 }}>{s}</a>)}
+                {['📞','📧','📘','📷'].map(s => <a key={s} href="#" style={{ width:32, height:32, background:'rgba(255,255,255,0.1)', borderRadius:6, display:'flex', alignItems:'center', justifyContent:'center', color:'white', fontSize:12, fontWeight:600 }}>{s}</a>)}
               </div>
             </div>
             <div>
