@@ -86,11 +86,11 @@ export default function PublicLayout() {
   return (
     <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column' }}>
       {/* TOP BAR */}
-      <div style={{ background:'#1B4332', color:'white', fontSize:13, padding:'6px 0' }}>
+      <div style={{ background:'#1B4332', color:'white', fontSize:13, padding:'6px 0', overflow:'hidden' }}>
         <div className="container" style={{ display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:8 }}>
-          <span style={{ display:'flex', alignItems:'center', gap:6 }}><Heart size={13} fill="currentColor" /> Your mental health matters — reach out today</span>
-          <span style={{ display:'flex', alignItems:'center', gap:16 }}>
-            <a href="tel:+919876543200" style={{ color:'white', display:'flex', alignItems:'center', gap:5 }}><Phone size={13} /> +91 98765 43200</a>
+          <span className="topbar-text" style={{ display:'flex', alignItems:'center', gap:6, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}><Heart size={13} style={{flexShrink:0}} fill="currentColor" /> <span className="topbar-text-label">Your mental health matters — reach out today</span></span>
+          <span className="topbar-phone" style={{ display:'flex', alignItems:'center', gap:16 }}>
+            <a href="tel:+919876543200" style={{ color:'white', display:'flex', alignItems:'center', gap:5, whiteSpace:'nowrap' }}><Phone size={13} /> +91 98765 43200</a>
           </span>
         </div>
       </div>
@@ -99,14 +99,16 @@ export default function PublicLayout() {
       <header style={{ background:'white', position:'sticky', top:0, zIndex:100, boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.08)' : '0 1px 0 #E8F0EB', transition:'box-shadow 0.3s' }}>
         <div className="container" style={{ display:'flex', alignItems:'center', justifyContent:'space-between', height:70 }}>
           {/* LOGO */}
-          <Link to="/" style={{ display:'flex', alignItems:'center', gap:10, textDecoration:'none' }}>
+          <Link to="/" className="site-logo" style={{ display:'flex', alignItems:'center', gap:10, textDecoration:'none', flexShrink:0 }}>
             <div
+  className="site-logo-mark"
   style={{
     width: 50,
     height: 50,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flexShrink: 0
   }}
 >
   <img
@@ -120,8 +122,8 @@ export default function PublicLayout() {
   />
 </div>
             <div>
-              <div style={{ fontFamily:'Playfair Display', fontSize:18, fontWeight:700, color:'#1B4332', lineHeight:1.1 }}>Manas</div>
-              <div style={{ fontSize:10, color:'#5A7464', letterSpacing:1.5, textTransform:'uppercase', fontWeight:600 }}>Healthcare</div>
+              <div className="site-logo-title" style={{ fontFamily:'Playfair Display', fontSize:18, fontWeight:700, color:'#1B4332', lineHeight:1.1, whiteSpace:'nowrap' }}>Manas</div>
+              <div className="site-logo-sub" style={{ fontSize:10, color:'#5A7464', letterSpacing:1.5, textTransform:'uppercase', fontWeight:600, whiteSpace:'nowrap' }}>Healthcare</div>
             </div>
           </Link>
 
@@ -142,10 +144,10 @@ export default function PublicLayout() {
           </nav>
 
           {/* CTA */}
-          <div style={{ display:'flex', alignItems:'center', gap:12 }}>
-            <Link to="/contact" className="btn btn-outline btn-sm" style={{ display:'flex' }}>Contact Us</Link>
-            <Link to="/admin/login" className="btn btn-primary btn-sm" style={{ display:'flex' }}>Admin Dashboard</Link>
-            <button onClick={() => setMenuOpen(!menuOpen)} style={{ display:'none', background:'none', color:'#1A2B22' }} className="mobile-menu-btn">
+          <div className="header-cta" style={{ display:'flex', alignItems:'center', gap:12, flexShrink:0 }}>
+            <Link to="/contact" className="btn btn-outline btn-sm header-cta-btn" style={{ display:'flex', whiteSpace:'nowrap' }}>Contact Us</Link>
+            <Link to="/admin/login" className="btn btn-primary btn-sm header-cta-btn header-cta-btn-admin" style={{ display:'flex', whiteSpace:'nowrap' }}>Admin Dashboard</Link>
+            <button onClick={() => setMenuOpen(!menuOpen)} style={{ display:'none', background:'none', color:'#1A2B22', flexShrink:0 }} className="mobile-menu-btn">
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -155,6 +157,10 @@ export default function PublicLayout() {
         {menuOpen && (
           <div style={{ background:'white', borderTop:'1px solid #E8F0EB', padding:'16px 0' }}>
             <div className="container">
+              <div style={{ display:'flex', gap:10, marginBottom:16 }}>
+                <Link to="/contact" className="btn btn-outline btn-sm" style={{ display:'flex', flex:1, justifyContent:'center' }}>Contact Us</Link>
+                <Link to="/admin/login" className="btn btn-primary btn-sm" style={{ display:'flex', flex:1, justifyContent:'center' }}>Admin Dashboard</Link>
+              </div>
               {NAV_ITEMS.map((item, i) => (
                 <div key={i}>
                   {item.dropdown ? (
@@ -239,9 +245,42 @@ export default function PublicLayout() {
       </footer>
 
       <style>{`
+        html, body { max-width: 100%; overflow-x: hidden; }
+
         @media (max-width: 900px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
+        }
+
+        /* Header CTA buttons: shrink instead of overflowing once the
+           hamburger appears at 900px, and keep shrinking down to phones */
+        @media (max-width: 900px) {
+          .header-cta { gap: 8px !important; }
+          .header-cta-btn { padding: 7px 12px !important; font-size: 12.5px !important; }
+        }
+
+        @media (max-width: 600px) {
+          .header-cta { gap: 6px !important; }
+          .header-cta-btn { padding: 6px 9px !important; font-size: 11px !important; }
+          .site-logo-title { font-size: 15px !important; }
+          .site-logo-sub { font-size: 8px !important; }
+          .site-logo-mark { width: 38px !important; height: 38px !important; }
+          .site-logo { gap: 6px !important; }
+        }
+
+        /* Below ~380px even the shrunk "Admin Dashboard" button is too
+           wide next to "Contact Us" + hamburger — drop its label to an
+           icon-free short word so the row fits on one line, no wrap/scroll */
+        @media (max-width: 400px) {
+          .header-cta-btn-admin { padding: 6px 8px !important; font-size: 10px !important; }
+        }
+
+        /* Top announcement bar: hide the phone number on phones, it's
+           duplicated in the footer and mobile menu anyway, and shrink
+           + truncate the message so it never forces page width out */
+        @media (max-width: 640px) {
+          .topbar-phone { display: none !important; }
+          .topbar-text { font-size: 11px !important; max-width: 100%; }
         }
       `}</style>
     </div>
